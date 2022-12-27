@@ -1,3 +1,4 @@
+const { type } = require('os');
 const readline = require('readline')
 
 const rl = readline.createInterface({
@@ -61,14 +62,14 @@ const verificarQuemComeça = () => {
     const bombas = ['6x6', '5x5', '4x4', '3x3', '2x2', '1x1', '0x0'];
     let bombaMaior = false;
 
-    verificaBombaMaior:
-    for (let bomba of bombas) {
+    CompararComBombas:
+    for (let bomba of bombas) {   // Compara a partir da bomba mais alta, se cada um dos dois jogadores tem
         for (let i in jogador1.pecas) {  // Compara cada peça do jogador1 com uma bomba
             if (jogador1.pecas[i] == bomba) {
                 bombaMaior = true;
                 jogadorDaVez = jogador1;
                 jogarPrimeiraPeça(jogador1, i);
-                break verificaBombaMaior;
+                break CompararComBombas;
             }
         }
         for (let i in jogador2.pecas) {  // Compara cada peça do jogador2 com uma bomba
@@ -76,21 +77,35 @@ const verificarQuemComeça = () => {
                 bombaMaior = true;
                 jogadorDaVez = jogador2;
                 jogarPrimeiraPeça(jogador2, i);
-                break verificaBombaMaior;
+                break CompararComBombas;
             }
         }
     }
 
-    if (bombaMaior == false) {    //Verificar quem tem a peça 
-        const sorteiaJogador = Math.trunc((Math.random() * 2) + 1);  // Sorteia um jogador para iniciar a partida
+    if (!bombaMaior) {    //Caso ninguém tenha uma bomba para se iniciar a partida, joga quem tem a peça maior 
+        let somaCadaPecaJogador1 = [], somaCadaPecaJogador2 = [];
 
-        if (sorteiaJogador == 1) {
+        jogador1.pecas.map(peca => somaCadaPecaJogador1.push(Number(peca[0]) + Number(peca[2])));        
+        jogador2.pecas.map(peca => somaCadaPecaJogador2.push(Number(peca[0]) + Number(peca[2])));
+
+        //Comparar os dois arrays e verificar quem tem a maior peça
+        const maiorPecaJogador1 = somaCadaPecaJogador1.reduce(function(a, b) {
+            return Math.max(a, b);
+        });
+        const maiorPecaJogador2 = somaCadaPecaJogador2.reduce(function(a, b) {
+            return Math.max(a, b);
+        });
+
+        const indexMaiorPecaJogador1 = somaCadaPecaJogador1.indexOf(maiorPecaJogador1);
+        const indexMaiorPecaJogador2 = somaCadaPecaJogador2.indexOf(maiorPecaJogador2);
+
+        if(maiorPecaJogador1 > maiorPecaJogador2) {
             jogadorDaVez = jogador1;
+            jogarPrimeiraPeça(jogador1, indexMaiorPecaJogador1);
         } else {
             jogadorDaVez = jogador2;
+            jogarPrimeiraPeça(jogador2, indexMaiorPecaJogador2);
         }
-
-        console.log(`\n\n    ${jogadorDaVez.nome} deve iniciar a partida!`);
     }
 }
 
@@ -358,13 +373,9 @@ const main = async () => {
 
     puxarPecasDoTotal(jogador1);
     puxarPecasDoTotal(jogador2);
-
-    console.log(jogador1.pecas);
-    console.log(jogador2.pecas);
-    console.log(mesaTotal);
-
+    
     console.log(mostrarPecasNasMaos());
-
+    
     verificarQuemComeça();
 
     while (jogadorDaVez.pecas.length != 0) {
