@@ -28,6 +28,6 @@ git clone git@github.com:maxsueldev/dominoJS.git
 <br>
 
 ## Autor
-Maxsuel Fernando B. A. Santos
+Maxsuel Santos
 
 <https://www.linkedin.com/in/maxsuelfernandob/>
