@@ -5,7 +5,7 @@
 
 ## Sobre o projeto
 
-dominoJS é um jogo interativo de dominó para dois jogadores, executado direto do console. 
+dominoJS é um jogo interativo de dominó para dois jogadores, em JavaScript e executado direto do console, utilizando Node e Yarn com a dependência Readline para interface de captura dos nomes dos Jogadores. 
 
 <br>
 
@@ -13,12 +13,21 @@ dominoJS é um jogo interativo de dominó para dois jogadores, executado direto 
 
 ![Print screen dominoJS](img/print1.png)
 
+![Print screen dominoJS](img/print2.png)
+
 <br>
 
 ## Tecnologias utilizadas
 
+### Back-End
+* NodeJS
+* Yarn
+
 ### Front-End
 * JS
+
+### Dependências
+* Readline
 
 <br>
 
@@ -27,6 +36,13 @@ dominoJS é um jogo interativo de dominó para dois jogadores, executado direto 
 # clonar repositório
 git clone git@github.com:maxsueldev/dominoJS.git
 
+# instalar o NodeJS
+
+# instalar o Yarn
+npm install yarn
+
+# adicionar dependência Readline
+npm install readline
 ```
 
 <br>
