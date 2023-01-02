@@ -5,9 +5,13 @@
 
 ## Sobre o projeto
 
+dominoJS é um jogo interativo de dominó para dois jogadores, executado direto do console. 
+
 <br>
 
-<!-- ### Layout Web -->
+### Layout Console
+
+![Print screen dominoJS](img/print1.png)
 
 <br>
 
