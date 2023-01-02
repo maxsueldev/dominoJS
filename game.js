@@ -6,7 +6,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
-const separador = `    ----------------------------------------------------------------------------------------------------------------------`;
+const separador = `    -----------------------------------------------------------------------------------------------------------------`;
 
 let pecasTotal = ['0x0', '0x1', '0x2', '0x3', '0x4', '0x5', '0x6',
     '1x1', '1x2', '1x3', '1x4', '1x5', '1x6',
@@ -121,7 +121,7 @@ const mostrarPecasNasMaos = () => {
 }
 
 const mostrarMesaAtual = () => {
-    return `\n\n\n\t\t\t ${mesaJogo.join(' <-> ')} \n`;
+    return `\n\n\n\t ${mesaJogo.join(' <-> ')} \n`;
 }
 
 const retornarLadosMesa = () => {
@@ -192,6 +192,7 @@ const puxarPecaCemiterio = () => {
         if (cemiterio.length > 0) {  // Se existir peça no cemitério
             pecaCemiterio = cemiterio[Math.trunc(Math.random() * cemiterio.length)];
             jogadorDaVez.pecas.push(pecaCemiterio);
+            console.log(`${jogadorDaVez.nome} puxou uma peça do cemitério: ${pecaCemiterio}`);
             cemiterio.splice(cemiterio.indexOf(pecaCemiterio), 1);  // Essa peça é removida do cemitério
 
             //console.log(jogadorDaVez.pecas);
@@ -398,6 +399,7 @@ const main = async () => {
         //**Resolver erro de finalizar partida somente quando o proximo jogador jogar
     }
     rl.close();
+    console.log(`${jogadorDaVez.nome} ganhou a partida!`);
 }
 
 main();
